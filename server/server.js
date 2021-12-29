@@ -7,13 +7,16 @@ const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const routes = require("./routes");
 
+// const mongoUri = `mongodb+srv://admin:adminwavesproject@cluster0.trif6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+// const mongoUri = `mongodb+srv://wilfred:wilfredadmin@cluster0.trif6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+
 const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}?retryWrites=true&w=majority`;
+
 mongoose.connect(mongoUri, {
-  useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  // setupMiddlewares: false,
+  useNewUrlParser: true,
+  // useCreatendex: true,
+  // useFindAndModify: false,
 });
 
 //// body parse
