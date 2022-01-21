@@ -34,6 +34,7 @@ const signInWithEmailAndPassword = async (email, password) => {
     if (!user) {
       throw new ApiError(httpStatus.UNAUTHORIZED, "Sorry Bad Email");
     }
+
     if (!(await user.comparePassword(password))) {
       throw new ApiError(httpStatus.UNAUTHORIZED, "Sorry Bad Password");
     }

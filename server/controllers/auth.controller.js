@@ -36,8 +36,7 @@ const authController = {
   },
 
   async isauth(req, res, next) {
-    try {
-    } catch (error) {}
+    res.json(req.user);
   },
 
   async hello() {
