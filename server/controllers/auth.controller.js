@@ -45,9 +45,9 @@ const authController = {
       console.log(userHello);
     } catch (error) {}
   },
-  async dog(req, res, next) {
-    res.json({ ok: "yes" });
-  },
+  // async dog(req, res, next) {
+  //   res.json({ ok: "yes" });
+  // },
 };
 
 module.exports = authController;
