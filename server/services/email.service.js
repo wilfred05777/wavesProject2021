@@ -11,7 +11,7 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-const registerEmail = async (useremail, user) => {
+const registerEmail = async (userEmail, user) => {
   try {
     const emailToken = user.generateRegisterToken();
 
@@ -24,7 +24,7 @@ const registerEmail = async (useremail, user) => {
     });
     const email = {
       body: {
-        name: useremail,
+        name: userEmail,
         intro: "Welcome to Waves! We're very excited to have you on board.",
         action: {
           instructions: "To get validate your account, please click here:",
@@ -38,12 +38,22 @@ const registerEmail = async (useremail, user) => {
           "Need help, or have questions? Just reply to this email, and we'd love to help.",
       },
     };
+
+    let emailBody = mailGenerator.generate(email);
+    let message = {
+      from: process.env.EMAIL,
+      to: userEmail,
+      subject: "Welcome to waves",
+      html: emailBody,
+    };
+
+    await transporter.sendMail(message);
+    return true;
   } catch (error) {
     throw error;
   }
 };
 
 module.exports = {
-  transporter,
   registerEmail,
 };
