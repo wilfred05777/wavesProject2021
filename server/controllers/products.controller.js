@@ -9,6 +9,34 @@ const productsController = {
       next(error);
     }
   },
+  async getProductById(req, res, next) {
+    try {
+      const _id = req.params.id;
+      const product = await productsService.getProductById(_id);
+
+      res.json(product);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async updateProductById(req, res, next) {
+    try {
+      const _id = req.params.id;
+      const product = await productsService.updateProductById(_id, req.body);
+      res.json(product);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async deleteProduct(req, res, next) {
+    const _id = req.params.id;
+    const product = await productsService.deleteProductById(_id);
+    res.json(product);
+    try {
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 // {
