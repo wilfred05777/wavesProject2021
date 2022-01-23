@@ -37,6 +37,15 @@ const productsController = {
       next(error);
     }
   },
+
+  async allProducts(req, res, next) {
+    try {
+      const products = await productsService.allProducts(req);
+      res.json(products);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 // {
