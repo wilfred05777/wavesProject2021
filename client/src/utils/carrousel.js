@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { WavesButton } from "utils/tools";
 
 const Carrousel = ({ items }) => {
   const settings = {
@@ -25,7 +26,14 @@ const Carrousel = ({ items }) => {
               <div className="featured_action">
                 <div className="tag title">{item.lineOne}</div>
                 <div className="tag low_title">{item.lineTwo}</div>
-                <div>button</div>
+                <div>
+                  <WavesButton
+                    type="default"
+                    title={item.linkTitle}
+                    linkTo={item.linkTo}
+                    style={{ margin: "10px 0 0 0" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
