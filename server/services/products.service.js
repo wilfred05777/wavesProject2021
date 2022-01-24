@@ -76,8 +76,8 @@ const paginateProducts = async (req) => {
     //   keywords: "elite",
     ///// brand is string needs to converted to id/number
     //   brand: ["objectId(61ed00d1bd6e46b5d6d16614)", "61ed00d1bd6e46b5d6d16614"],
-    //   lt: 200,
-    //   gt: 500,
+    //   "min": 200,
+    //   "max": 500,
     //   frets: 24,
 
     // };
@@ -90,11 +90,11 @@ const paginateProducts = async (req) => {
         $match: { model: { $regex: re } },
       });
     }
-
+    //// error --- "message": "Cannot read properties of undefined (reading 'ObjectId')" or types
     if (req.body.brand && req.body.brand.length > 0) {
       let newBrandsArray = req.body.brand.map((item) =>
         // mongoose.Types.ObjectId(item)
-        Mongoose.Types.ObjectId(item)
+        mongoose.Types.ObjectId(item)
       );
       aggQueryArray.push({
         $match: { brand: { $in: newBrandsArray } },
@@ -106,6 +106,46 @@ const paginateProducts = async (req) => {
         $match: { frets: { $in: req.body.frets } },
       });
     }
+
+    if (
+      (req.body.min && req.body.min > 0) ||
+      (req.body.max && req.body.max < 5000)
+    ) {
+      /// { $range: {price:[0,1000]}} /// not supported for free accounts
+      if (req.body.min) {
+        aggQueryArray.push({
+          $match: { price: { $gt: req.body.min } },
+        }); /// minimum price, guitar with a price greater than xxx
+      }
+      if (req.body.max) {
+        aggQueryArray.push({
+          $match: { price: { $lt: req.body.max } },
+        }); /// maximum price, guitar with a price lower than xxx
+      }
+    }
+
+    // "page":1,
+    // "keywords":"iron",
+    // "frets": [2],
+    // "brand": ["61ecae37efd60bf754c38c0a","61ecae37efd60bf754c38c0a"],
+    // "min": 100,
+    // "max": 600
+
+    //// add populate
+    aggQueryArray.push(
+      {
+        $lookup: {
+          from: "brands",
+          localField: "brand",
+          foreignField: "_id",
+          as: "brand",
+        },
+      },
+      {
+        $unwind: "$brand",
+      }
+    );
+
     //////
 
     let aggQuery = Product.aggregate(aggQueryArray);
