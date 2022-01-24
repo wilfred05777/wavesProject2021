@@ -1,7 +1,8 @@
 const httpStatus = require("http-status");
-const { mongoose, Mongoose } = require("mongoose");
 const { ApiError } = require("../middleware/apiError");
 const { Product } = require("../models/product");
+const mongoose = require("mongoose");
+// const { mongoose } = require("mongoose"); lahi sya pag wala curly bracket di mo function ang moongose.Types upon search
 
 const addProduct = async (body) => {
   try {
