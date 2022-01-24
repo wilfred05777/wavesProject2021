@@ -1,4 +1,5 @@
 const httpStatus = require("http-status");
+const { mongoose, Mongoose } = require("mongoose");
 const { ApiError } = require("../middleware/apiError");
 const { Product } = require("../models/product");
 
@@ -70,9 +71,11 @@ const allProducts = async (req) => {
 
 const paginateProducts = async (req) => {
   try {
+    /// search by
     // const example = {
     //   keywords: "elite",
-    //   brand: ["61ed00d1bd6e46b5d6d16614", "61ed00d1bd6e46b5d6d16614"],
+    ///// brand is string needs to converted to id/number
+    //   brand: ["objectId(61ed00d1bd6e46b5d6d16614)", "61ed00d1bd6e46b5d6d16614"],
     //   lt: 200,
     //   gt: 500,
     //   frets: 24,
@@ -81,6 +84,28 @@ const paginateProducts = async (req) => {
 
     let aggQueryArray = [];
 
+    if (req.body.keywords && req.body.keywords != "") {
+      const re = new RegExp(`${req.body.keywords}`, "gi");
+      aggQueryArray.push({
+        $match: { model: { $regex: re } },
+      });
+    }
+
+    if (req.body.brand && req.body.brand.length > 0) {
+      let newBrandsArray = req.body.brand.map((item) =>
+        // mongoose.Types.ObjectId(item)
+        Mongoose.Types.ObjectId(item)
+      );
+      aggQueryArray.push({
+        $match: { brand: { $in: newBrandsArray } },
+      });
+    }
+
+    if (req.body.frets && req.body.frets.length > 0) {
+      aggQueryArray.push({
+        $match: { frets: { $in: req.body.frets } },
+      });
+    }
     //////
 
     let aggQuery = Product.aggregate(aggQueryArray);
@@ -89,6 +114,7 @@ const paginateProducts = async (req) => {
       limit: 2,
       sort: { date: "desc" },
     };
+
     const products = await Product.aggregatePaginate(aggQuery, options);
     return products;
   } catch (error) {
