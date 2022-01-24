@@ -3,6 +3,10 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const siteController = require("../controllers/site.controller");
 
-router.route("/").post(auth("createAny", "site"), siteController.postSiteArgs);
+router
+  .route("/")
+  .get(siteController.getSiteArgs)
+  .post(auth("createAny", "site"), siteController.postSiteArgs)
+  .patch(auth("updateAny", "site"), siteController.udpateSiteArgs);
 
 module.exports = router;

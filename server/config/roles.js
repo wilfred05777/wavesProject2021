@@ -21,6 +21,7 @@ let grantsObject = {
     },
     brand: { "read:any": ["*"] },
     product: { "read:any": ["*"] },
+    site: { "read:any": ["*"] },
   },
 };
 
