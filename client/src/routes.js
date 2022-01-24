@@ -1,6 +1,6 @@
 import React from "react";
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import { Route, Routes } from "react-router";
 
 import Header from "./components/navigation/header";
@@ -11,9 +11,12 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
+      <Switch>
+        <Route path="/" component={Home} />
+      </Switch>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
-      </Routes>
+      </Routes> */}
       <Footer />
     </BrowserRouter>
   );
