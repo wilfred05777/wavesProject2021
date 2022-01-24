@@ -68,10 +68,39 @@ const allProducts = async (req) => {
   }
 };
 
+const paginateProducts = async (req) => {
+  try {
+    // const example = {
+    //   keywords: "elite",
+    //   brand: ["61ed00d1bd6e46b5d6d16614", "61ed00d1bd6e46b5d6d16614"],
+    //   lt: 200,
+    //   gt: 500,
+    //   frets: 24,
+
+    // };
+
+    let aggQueryArray = [];
+
+    //////
+
+    let aggQuery = Product.aggregate(aggQueryArray);
+    const options = {
+      page: req.body.page,
+      limit: 2,
+      sort: { date: "desc" },
+    };
+    const products = await Product.aggregatePaginate(aggQuery, options);
+    return products;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   addProduct,
   getProductById,
   updateProductById,
   deleteProductById,
   allProducts,
+  paginateProducts,
 };
