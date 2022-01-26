@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import SlimPromotion from "utils/promotions/slim.block";
 import Featured from "./featured";
 import { useDispatch, useSelector } from "react-redux";
-import { myDog } from "store/actions";
+import { productsBySort } from "store/actions/product.actions";
+// import { myDog } from "store/actions";
 
 const slimPromotion = {
   img: "/images/featured/featured_home_3.jpg",
@@ -13,14 +14,15 @@ const slimPromotion = {
 };
 
 const Home = () => {
-  const user = useSelector((state) => state.users);
+  // const user = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(myDog());
+    // dispatch(myDog());
+    dispatch(productsBySort());
   }, [dispatch]);
 
-  console.log(user);
+  // console.log(user);
   return (
     <div>
       <Featured />
