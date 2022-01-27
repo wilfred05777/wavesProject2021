@@ -1,6 +1,6 @@
 import * as actions from "./index";
 import axios from "axios";
-import { GET_PROD_BY_SOLD } from "store/types";
+// import { GET_PROD_BY_SOLD } from "store/types";
 
 export const productsBySort = ({ limit, sortBy, order, where }) => {
   return async (dispatch) => {
