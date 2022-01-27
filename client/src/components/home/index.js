@@ -19,7 +19,23 @@ const Home = () => {
 
   useEffect(() => {
     // dispatch(myDog());
-    dispatch(productsBySort());
+    dispatch(
+      productsBySort({
+        limit: 4,
+        sortB: "itemSold",
+        order: "desc",
+        where: "bySold",
+      })
+    );
+
+    dispatch(
+      productsBySort({
+        limit: 4,
+        sortB: "date",
+        order: "desc",
+        where: "byDate",
+      })
+    );
   }, [dispatch]);
 
   // console.log(user);

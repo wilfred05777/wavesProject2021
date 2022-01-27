@@ -1,3 +1,14 @@
+import { GET_PROD_BY_SOLD, GET_PROD_BY_DATE } from "store/types";
+
+export const productsBySold = (data) => ({
+  type: GET_PROD_BY_SOLD,
+  payload: data,
+});
+
+export const productsByDate = (data) => ({
+  type: GET_PROD_BY_DATE,
+  payload: data,
+});
 // import {} from "../types";
 
 // import { MY_DOG } from "../types";
@@ -11,8 +22,3 @@
 //     payload: dogVars,
 //   };
 // };
-import { GET_PROD_BY_SOLD } from "store/types";
-export const productsBySold = (data) => ({
-  type: GET_PROD_BY_SOLD,
-  payload: data,
-});
