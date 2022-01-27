@@ -15,6 +15,7 @@ const slimPromotion = {
 
 const Home = () => {
   // const user = useSelector((state) => state.users);
+  const { bySold, byDate } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +40,8 @@ const Home = () => {
   }, [dispatch]);
 
   // console.log(user);
+  // console.log(byDate);
+  console.log(bySold);
   return (
     <div>
       <Featured />

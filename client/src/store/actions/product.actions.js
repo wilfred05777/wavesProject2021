@@ -1,5 +1,6 @@
 import * as actions from "./index";
 import axios from "axios";
+import { GET_PROD_BY_SOLD } from "store/types";
 
 export const productsBySort = ({ limit, sortBy, order, where }) => {
   return async (dispatch) => {
@@ -8,11 +9,17 @@ export const productsBySort = ({ limit, sortBy, order, where }) => {
         // limit: 2,
         // sortBy: "price",
         // order: "asc",
-        limit,
-        sortBy,
-        order,
+        params: {
+          limit,
+          sortBy,
+          order,
+        },
       });
 
+      // return {
+      //   type: GET_PROD_BY_SOLD,
+      //   payload: products.data,
+      // };
       switch (where) {
         case "bySold":
           dispatch(actions.productsBySold(products.data));
