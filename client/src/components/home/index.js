@@ -4,7 +4,7 @@ import Featured from "./featured";
 import { useDispatch, useSelector } from "react-redux";
 import { productsBySort } from "store/actions/product.actions";
 // import { myDog } from "store/actions";
-
+import Loader from "utils/loader";
 import CardBlock from "utils/products/card.blocks";
 
 const slimPromotion = {
@@ -18,7 +18,7 @@ const slimPromotion = {
 const Home = () => {
   // const user = useSelector((state) => state.users);
   // const { bySold, byDate } = useSelector((state) => state.products);
-  const { bySold } = useSelector((state) => state.products);
+  const { bySold, byDate } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,8 +51,16 @@ const Home = () => {
 
       {bySold ? (
         <CardBlock items={bySold} title="Best selling guitars" />
-      ) : null}
+      ) : (
+        <Loader />
+      )}
       <SlimPromotion items={slimPromotion} />
+
+      {byDate ? (
+        <CardBlock items={byDate} title="Latest guitars on the shop" />
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
