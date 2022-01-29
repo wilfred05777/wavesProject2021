@@ -6,17 +6,17 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/navigation/header";
 import Footer from "./components/navigation/footer";
 import Home from "./components/home";
+import MainLayout from "hoc/mainLayout";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Switch>
-        <Route path="/" component={Home} />
-      </Switch>
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes> */}
+      <MainLayout>
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
+      </MainLayout>
       <Footer />
     </BrowserRouter>
   );
