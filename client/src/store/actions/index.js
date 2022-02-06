@@ -3,6 +3,7 @@ import {
   GET_PROD_BY_DATE,
   SUCCESS_GLOBAL,
   ERROR_GLOBAL,
+  CLEAR_NOTIFICATION,
 } from "../types";
 
 //// PRODUCTS
@@ -27,6 +28,14 @@ export const successGlobal = (msg) => ({
   type: SUCCESS_GLOBAL,
   payload: msg,
 });
+
+export const clear_notification = () => {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_NOTIFICATION,
+    });
+  };
+};
 
 // import {} from "../types";
 
