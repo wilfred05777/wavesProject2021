@@ -29,7 +29,7 @@ export const successGlobal = (msg) => ({
   payload: msg,
 });
 
-export const clear_notification = () => {
+export const clearNotification = () => {
   return (dispatch) => {
     dispatch({
       type: CLEAR_NOTIFICATION,
