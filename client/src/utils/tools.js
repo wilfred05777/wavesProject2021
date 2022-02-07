@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { toast } from "react-toastify";
+
 export const WavesButton = (props) => {
   let template = "";
 
@@ -62,3 +63,9 @@ export const showToast = (type, msg) => {
       return false;
   }
 };
+
+export const errorHelper = (formik, value) => ({
+  error: formik.errors[value] && formik.touched[value] ? true : false,
+  helperText:
+    formik.errors[value] && formik.touched[value] ? formik.errors[value] : null,
+});

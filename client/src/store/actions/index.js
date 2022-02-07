@@ -4,7 +4,15 @@ import {
   SUCCESS_GLOBAL,
   ERROR_GLOBAL,
   CLEAR_NOTIFICATION,
+  AUTH_USER,
 } from "../types";
+
+//// USER
+
+export const userAuthenticate = (user) => ({
+  type: AUTH_USER,
+  payload: user,
+});
 
 //// PRODUCTS
 
