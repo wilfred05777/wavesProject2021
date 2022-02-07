@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { showToast } from "utils/tools/";
+
+import { useSelector, useDispatch } from "react-redux";
 import { clearNotification } from "store/actions/index";
 
 const MainLayout = (props) => {
