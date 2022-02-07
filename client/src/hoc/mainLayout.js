@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearNotification } from "store/actions/index";
 
 const MainLayout = (props) => {
+  //  TOAST notification is not working ...
+
   const notifications = useSelector((state) => state.notifcations);
   const dispatch = useDispatch();
 
