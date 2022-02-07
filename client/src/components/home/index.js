@@ -3,6 +3,7 @@ import SlimPromotion from "utils/promotions/slim.block";
 import Featured from "./featured";
 import { useDispatch, useSelector } from "react-redux";
 import { productsBySort } from "store/actions/product.actions";
+// import { users } from "store/actions/index";
 // import { myDog } from "store/actions";
 import Loader from "utils/loader";
 import CardBlock from "utils/products/card.blocks";
@@ -16,13 +17,18 @@ const slimPromotion = {
 };
 
 const Home = () => {
+  const dispatch = useDispatch();
   // const user = useSelector((state) => state.users);
   // const { bySold, byDate } = useSelector((state) => state.products);
   const { bySold, byDate } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     // dispatch(myDog());
+    // dispatch(users({
+
+    // }));
+
     dispatch(
       productsBySort({
         limit: 4,
@@ -44,7 +50,7 @@ const Home = () => {
 
   // console.log(user);
   // console.log(byDate);
-  console.log(bySold);
+  // console.log(bySold);
   return (
     <div>
       <Featured />

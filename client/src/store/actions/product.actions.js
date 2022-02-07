@@ -15,11 +15,13 @@ export const productsBySort = ({ limit, sortBy, order, where }) => {
           order,
         },
       });
+      // dispatch(actions.productsBySold(products.data));
 
       // return {
       //   type: GET_PROD_BY_SOLD,
       //   payload: products.data,
       // };
+
       switch (where) {
         case "bySold":
           dispatch(actions.productsBySold(products.data));
