@@ -1,13 +1,13 @@
 // import { MY_DOG } from "../types";.
 
-import { AUTH_USER, SIGN_OUT } from "../types";
+import { AUTH_USER, SIGN_OUT, UPDATE_USER_PROFILE } from "../types";
 // import { AUTH_USER } from "store/types";
 
 let DEFAULT_USER_STATE = {
   data: {
     _id: null,
     email: null,
-    fistname: null,
+    firstname: null,
     lastname: null,
     history: [],
     verified: null,
@@ -33,6 +33,15 @@ export default function usersReducer(state = DEFAULT_USER_STATE, action) {
           ...DEFAULT_USER_STATE.data,
         },
         auth: false,
+      };
+    case UPDATE_USER_PROFILE:
+      return {
+        ...state,
+        data: {
+          // firstname: action.payload.data.firstname,
+          // lastname:
+          ...action.payload,
+        },
       };
     default:
       return state;

@@ -6,10 +6,10 @@ import {
   CLEAR_NOTIFICATION,
   AUTH_USER,
   SIGN_OUT,
+  UPDATE_USER_PROFILE
 } from "../types";
 
 //// USER
-
 export const userAuthenticate = (user) => ({
   type: AUTH_USER,
   payload: user,
@@ -19,8 +19,12 @@ export const userSignOut = () => ({
   type: SIGN_OUT,
 });
 
-//// PRODUCTS
+export const userUpdateProfile = (userdata) => ({
+  type: UPDATE_USER_PROFILE,
+  payload: userdata
+})
 
+//// PRODUCTS
 export const productsBySold = (data) => ({
   type: GET_PROD_BY_SOLD,
   payload: data,
