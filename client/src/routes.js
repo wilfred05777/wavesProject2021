@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import { Route, Routes } from "react-router";
 import Loader from "utils/loader";
+import AuthGuard from "./hoc/authGuard";
 
 import { useDispatch, useSelector } from "react-redux";
 import { userIsAuth, userSignOut } from "store/actions/user.actions";
@@ -44,7 +45,7 @@ const Routes = (props) => {
           <Header users={users} signOutUser={signOutUser} />
           <MainLayout>
             <Switch>
-              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/dashboard" component={AuthGuard(Dashboard)} />
               <Route path="/sign_in" component={RegisterLogin} />
               <Route path="/" component={Home} />
             </Switch>
