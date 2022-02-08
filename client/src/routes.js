@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/navigation/header";
 import Footer from "./components/navigation/footer";
 import Home from "./components/home";
-import MainLayout from "hoc/mainLayout";
+import MainLayout from "./hoc/mainLayout";
 import RegisterLogin from "./components/auth";
 
 function App() {
