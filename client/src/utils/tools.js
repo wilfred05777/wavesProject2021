@@ -78,3 +78,4 @@ export const removeTokenCookie = () =>
 export const getAuthHeader = () => {
   return { headers: { Authorization: `Bearer ${getTokenCookie()}` } };
 };
+// 109. Auto sign in users
