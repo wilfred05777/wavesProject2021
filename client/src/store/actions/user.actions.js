@@ -1,5 +1,11 @@
 import * as actions from "./index";
 import axios from "axios";
+import {
+  getAuthHeader,
+  removeTokenCookie,
+  getTokenCookie,
+} from "../../utils/tools";
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // export const userRegister = ({values, password}) => {
 export const userRegister = (values) => {
@@ -39,6 +45,7 @@ export const userSignIn = (values) => {
           auth: true,
         })
       );
+
       dispatch(actions.successGlobal("Welcome!! "));
     } catch (error) {
       dispatch(actions.errorGlobal(error.response.data.message));
@@ -46,4 +53,25 @@ export const userSignIn = (values) => {
   };
 };
 
-export default userRegister;
+export const userIsAuth = () => {
+  return async (dispatch) => {
+    try {
+      if (!getTokenCookie()) {
+        throw new Error();
+      }
+      // console.log("Working");
+      const user = await axios.get(`/api/auth/isauth`, getAuthHeader());
+
+      // console.log(user);
+
+      dispatch(
+        actions.userAuthenticate({
+          data: user.data,
+          auth: true,
+        })
+      );
+    } catch (error) {
+      dispatch(actions.userAuthenticate({ data: {}, auth: false }));
+    }
+  };
+};
