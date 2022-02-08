@@ -11,12 +11,17 @@ import RegisterLogin from "./components/auth";
 
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "utils/loader";
-import { userIsAuth } from "store/actions/user.actions";
+import { userIsAuth, userSignOut } from "store/actions/user.actions";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
+
+  const signOutUser = () => {
+    // alert("sign out");
+    dispatch(userSignOut());
+  };
 
   useEffect(() => {
     dispatch(userIsAuth());
@@ -34,7 +39,7 @@ const Routes = (props) => {
         <Loader full={true} />
       ) : (
         <>
-          <Header />
+          <Header users={users} signOutUser={signOutUser} />
           <MainLayout>
             <Switch>
               <Route path="/sign_in" component={RegisterLogin} />
