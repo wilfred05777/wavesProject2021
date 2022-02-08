@@ -79,3 +79,6 @@ export const getAuthHeader = () => {
   return { headers: { Authorization: `Bearer ${getTokenCookie()}` } };
 };
 // 109. Auto sign in users
+
+// cardblock not showing
+// error on mobile responsive
