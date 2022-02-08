@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { showToast } from "utils/tools/";
+import { showToast } from "utils/tools";
 
 import { useSelector, useDispatch } from "react-redux";
 import { clearNotification } from "store/actions/index";
@@ -10,7 +10,7 @@ import { clearNotification } from "store/actions/index";
 const MainLayout = (props) => {
   //  TOAST notification is not working ...
 
-  const notifications = useSelector((state) => state.notifcations);
+  const notifications = useSelector((state) => state.notifications);
   const dispatch = useDispatch();
 
   useEffect(() => {

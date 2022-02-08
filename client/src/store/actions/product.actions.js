@@ -37,7 +37,8 @@ export const productsBySort = ({ limit, sortBy, order, where }) => {
     } catch (error) {
       console.log(error);
       // dispatch(actions.successGlobal("Sorry something happened, try again"));
-      dispatch(actions.errorGlobal(error.response.data.message));
+      dispatch(actions.errorGlobal("Sorry something happend, try again!"));
+      // dispatch(actions.errorGlobal(error.response.data.message));
     }
   };
 };
