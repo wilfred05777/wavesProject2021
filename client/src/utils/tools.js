@@ -76,5 +76,5 @@ export const getTokenCookie = () => cookie.load("x-access-token");
 export const removeTokenCookie = () =>
   cookie.remove("x-access-token", { path: "/" });
 export const getAuthHeader = () => {
-  return { Headers: { Authorization: `Bearer ${getTokenCookie()}` } };
+  return { headers: { Authorization: `Bearer ${getTokenCookie()}` } };
 };
