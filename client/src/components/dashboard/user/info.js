@@ -3,15 +3,20 @@ import DashboardLayout from "hoc/dashboardLayout";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { errorHelper } from "utils/tools";
-// import { EmailStepper } from "./stepper";
 
 import { useDispatch } from "react-redux";
-import { Button, TextField } from "@material-ui/core";
+// import { Button, TextField } from "@material-ui/core";
+import { Button, TextField } from "@mui/material";
+import { spacing } from "@material-ui/system";
+import { FormGroup } from "@mui/material";
 // import { userUpdateProfile } from "store/actions";
 import { userUpdateProfile } from "store/actions/user.actions";
 import EmailStepper from "./stepper";
 
 const UserInfo = ({ users }) => {
+  const theme = {
+    spacing: 8,
+  };
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -37,11 +42,11 @@ const UserInfo = ({ users }) => {
   });
 
   return (
-    <DashboardLayout title="User Information">
+    <DashboardLayout title="User information">
       {/* content */}
 
       <form
-        className="mt-3 article_form"
+        className="mb-3 article_form"
         style={{ maxWidth: "250px" }}
         onSubmit={formik.handleSubmit}
       >
@@ -50,7 +55,7 @@ const UserInfo = ({ users }) => {
             style={{ width: "100%" }}
             name="firstname"
             label="Enter your firstname"
-            // variant="outlined"
+            variant="outlined"
             {...formik.getFieldProps("firstname")}
             {...errorHelper(formik, "firstname")}
           />
@@ -61,12 +66,14 @@ const UserInfo = ({ users }) => {
             style={{ width: "100%" }}
             name="firstname"
             label="Enter your lastname"
-            // variant="outlined"
+            variant="outlined"
             {...formik.getFieldProps("lastname")}
             {...errorHelper(formik, "lastname")}
           />
         </div>
+
         <Button
+          mb="3"
           className="mb-3"
           variant="contained"
           type="submit"
